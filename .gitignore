@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+.venv*/
+ENV/
+
+# Environment variables
+.env
+.env.*
+
+# Model artifacts are included in this repo (total size ~3MB)
+# If they grow large in future, use Git LFS or Hugging Face Hub
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.ipynb
+
+# Data files
+data/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Logs
+*.log
+logs/
