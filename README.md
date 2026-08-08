@@ -176,4 +176,4 @@ python -m twine upload dist/*
 
 # License
 
-Released under the MIT License.
+Released under the Apache-2.0 License.
