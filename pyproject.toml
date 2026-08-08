@@ -7,7 +7,7 @@ name = "hybrid-dt-nn"
 # NOTE: 0.1.0 was already uploaded to TestPyPI under the old (MIT) metadata.
 # You must bump this before your next upload -- PyPI/TestPyPI reject re-uploading
 # an existing version number even if the contents changed.
-version = "0.1.1"
+version = "0.1.2"
 description = "A hybrid decision tree + neural network regressor implemented with scikit-learn and TensorFlow."
 readme = "README.md"
 requires-python = ">=3.10"
