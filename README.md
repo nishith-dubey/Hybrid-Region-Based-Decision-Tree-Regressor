@@ -41,15 +41,6 @@ Final Prediction
 
 ---
 
-## Performance
-
-| Model | Test R² |
-|-------|---------:|
-| Decision Tree | 0.5636 |
-| Hybrid DT + NN | **0.8790** |
-
----
-
 # Installation
 
 ## Install from PyPI
