@@ -17,24 +17,24 @@ The Decision Tree divides the feature space into leaf regions. Neural Networks a
                          v
                 Feature-space Regions
                          |
-              +----------+----------+
-              |                     |
-       Enough samples?              No
-              |                     |
-             Yes                    v
-              |             Decision Tree
-              v               prediction
-      Train Neural Network
-        for this region
-              |
-              v
-       Region-specific
-         prediction
-              |
-              +----------+
-                         |
                          v
-                  Final Prediction
+                  Enough samples?
+                    /          \
+                   /            \
+                 Yes             No
+                  |               |
+                  v               v
+        Train Neural Network   Decision Tree
+          for this region       Prediction
+                  |               |
+                  v               |
+           Region-specific        |
+             Prediction           |
+                  |               |
+                  +-------+-------+
+                          |
+                          v
+                   Final Prediction
 ```
 
 ### Training
@@ -112,10 +112,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 model = HybridTreeRegressor(
-    dt_max_depth=5,
+    dt_max_depth=3,
     dt_min_samples_leaf=1000,
     nn_min_samples=50,
-    use_hpo=False,
+    use_hpo=True,
     random_state=42
 )
 
@@ -135,7 +135,7 @@ print("R²:", r2_score(y_test, predictions))
 Controls the maximum depth of the Decision Tree.
 
 ```python
-dt_max_depth=5
+dt_max_depth=3
 ```
 
 A larger value allows more detailed partitioning of the feature space.
@@ -147,7 +147,7 @@ A larger value allows more detailed partitioning of the feature space.
 Controls the minimum number of training samples allowed in each Decision Tree leaf.
 
 ```python
-dt_min_samples_leaf=10
+dt_min_samples_leaf=1000
 ```
 
 This parameter controls the **tree partitioning itself**.
@@ -184,11 +184,11 @@ nn_min_samples
 For example:
 
 ```python
-dt_min_samples_leaf=10
+dt_min_samples_leaf=1000
 nn_min_samples=50
 ```
 
-allows the tree to create leaves with 10+ samples, while Neural Networks are trained only for leaves containing at least 50 samples.
+allows the tree to create leaves with 1000+ samples, while Neural Networks are trained only for leaves containing at least 50 samples.
 
 If:
 
@@ -233,38 +233,6 @@ use_hpo=False
 
 ---
 
-# Reproducing the California Housing Experiment
-
-The following configuration corresponds to the balanced California Housing experiment used during development:
-
-```python
-model = HybridTreeRegressor(
-    dt_max_depth=3,
-    dt_min_samples_leaf=1000,
-    nn_min_samples=50,
-    use_hpo=True,
-    hpo_trials=30,
-    random_state=42,
-    verbose=1
-)
-```
-
-The corresponding Decision Tree baseline is:
-
-```python
-from sklearn.tree import DecisionTreeRegressor
-
-dt = DecisionTreeRegressor(
-    max_depth=3,
-    min_samples_leaf=1000,
-    random_state=42
-)
-```
-
-This configuration is useful for reproducing the development experiment. It should not be interpreted as a universally optimal configuration for every dataset.
-
----
-
 # Checking the Installed Package
 
 After installation:
@@ -281,7 +249,7 @@ print("Estimator:", HybridTreeRegressor)
 Example:
 
 ```text
-Version: 0.1.4
+Version: 0.1.5
 Package: .../site-packages/hybrid_dt_nn/__init__.py
 Estimator: <class 'hybrid_dt_nn.estimator.HybridTreeRegressor'>
 ```
@@ -313,10 +281,10 @@ print(hybrid_dt_nn.__version__)
 For example:
 
 ```bash
-pip install hybrid-dt-nn==0.1.4
+pip install hybrid-dt-nn==0.1.5
 ```
 
-Replace `0.1.4` with the required version.
+Replace `0.1.5` with the required version.
 
 ---
 
@@ -326,7 +294,7 @@ Open the **VS Code Terminal**, not the Python `.py` file, and run:
 
 ```powershell
 python -m pip install --upgrade --no-cache-dir `
-  hybrid-dt-nn==0.1.4
+  hybrid-dt-nn==0.1.5
 ```
 
 Then run your Python file:
@@ -371,7 +339,7 @@ print("Package:", hybrid_dt_nn.__file__)
 For a future version, replace:
 
 ```text
-0.1.4
+0.1.5
 ```
 
 with the new version number.
