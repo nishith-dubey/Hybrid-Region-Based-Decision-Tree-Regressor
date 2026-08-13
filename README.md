@@ -113,7 +113,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 model = HybridTreeRegressor(
     dt_max_depth=5,
-    dt_min_samples_leaf=10,
+    dt_min_samples_leaf=1000,
     nn_min_samples=50,
     use_hpo=False,
     random_state=42
@@ -292,7 +292,7 @@ The package location is useful for confirming that Python is using the installed
 
 # Using the Latest Version
 
-## Normal PyPI Installation
+## PyPI Installation
 
 To install the latest published version:
 
@@ -329,15 +329,6 @@ python -m pip install --upgrade --no-cache-dir `
   hybrid-dt-nn==0.1.4
 ```
 
-For TestPyPI:
-
-```powershell
-python -m pip install --upgrade --no-cache-dir `
-  --index-url https://test.pypi.org/simple/ `
-  --extra-index-url https://pypi.org/simple `
-  hybrid-dt-nn==0.1.4
-```
-
 Then run your Python file:
 
 ```powershell
@@ -367,18 +358,9 @@ It is a terminal command.
 
 # Google Colab
 
-Install a specific TestPyPI version:
-
 ```python
-!pip install --upgrade --no-cache-dir \
-    --index-url https://test.pypi.org/simple/ \
-    --extra-index-url https://pypi.org/simple \
-    hybrid-dt-nn==0.1.4
-```
+!pip install --upgrade hybrid-dt-nn
 
-Then import:
-
-```python
 import hybrid_dt_nn
 from hybrid_dt_nn import HybridTreeRegressor
 
@@ -393,32 +375,6 @@ For a future version, replace:
 ```
 
 with the new version number.
-
----
-
-# TestPyPI
-
-TestPyPI is useful for testing a release before publishing it to the production PyPI index.
-
-Install a specific TestPyPI version:
-
-```bash
-pip install \
-    --index-url https://test.pypi.org/simple/ \
-    --extra-index-url https://pypi.org/simple \
-    hybrid-dt-nn==0.1.4
-```
-
-The second index is required because TestPyPI may not contain all dependencies.
-
-After installation, verify:
-
-```python
-import hybrid_dt_nn
-
-print(hybrid_dt_nn.__version__)
-print(hybrid_dt_nn.__file__)
-```
 
 ---
 
@@ -514,25 +470,6 @@ dist/
 ---
 
 # Publishing
-
-## TestPyPI
-
-Build a new version and upload it:
-
-```bash
-python -m build
-python -m twine check dist/*
-python -m twine upload --repository testpypi dist/*
-```
-
-Install the new TestPyPI version for verification:
-
-```bash
-pip install \
-    --index-url https://test.pypi.org/simple/ \
-    --extra-index-url https://pypi.org/simple \
-    hybrid-dt-nn==<version>
-```
 
 ## Production PyPI
 
