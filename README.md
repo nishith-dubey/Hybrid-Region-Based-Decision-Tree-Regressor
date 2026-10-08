@@ -211,7 +211,7 @@ model = HybridTreeRegressor(
     dt_min_samples_leaf=1000,
     nn_min_samples=50,
     use_hpo=True,
-    hpo_trials=30,
+    hpo_trials=20,
     random_state=42
 )
 ```
